@@ -10,8 +10,8 @@ from random import random, randint
 class Game:
   # settings
   _WINDOW_CAPTION = "Game"
-  _FPS = 30
-  _FPS_DISPLAY = False
+  _FPS = 1000
+  _FPS_DISPLAY = True
   _WIDTH = 320
   _HEIGHT = 320
   _BGCOL = (255, 255, 255)
@@ -151,7 +151,9 @@ class NewEntity(Entity):
 
 class Roomba(Entity):
   sprFace = pygame.image.load('agent_face.png')
+
   ## events
+  
   def __init__(self, x, y, r, rW, color, ang=0, lvel=0, rvel=0):
     super().__init__(x, y)
     self.r = r # roomba radius
