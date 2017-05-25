@@ -229,10 +229,10 @@ class Roomba(Entity):
     vis = [[0, 0, 0] for i in range(rays)]
     depth = [Game._DIAG + 1 for i in range(rays)]
     if rays == 1:
-      rayPts = [(self.x + Game._DIAG + cos(self.ang), self.y - Game._DIAG + sin(self.ang))]
+      rayPts = [(self.x + self.viewRayDist + cos(self.ang), self.y - self.viewRayDist + sin(self.ang))]
     else:
-      rayPts = [(self.x + Game._DIAG * cos(self.ang + viewAngle * (0.5 - i / (rays - 1))), \
-                 self.y - Game._DIAG * sin(self.ang + viewAngle * (0.5 - i / (rays - 1)))) for i in range(rays)]
+      rayPts = [(self.x + self.viewRayDist * cos(self.ang + viewAngle * (0.5 - i / (rays - 1))), \
+                 self.y - self.viewRayDist * sin(self.ang + viewAngle * (0.5 - i / (rays - 1)))) for i in range(rays)]
     for i, ray in enumerate(rayPts):
       for obstacle in Game._ACTIVE_ROOM.obstacles:
         if type(obstacle) == ObstacleRect:
