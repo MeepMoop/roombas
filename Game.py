@@ -188,6 +188,7 @@ class Roomba(Entity):
     self.visRGB, self.visD = self.getVision(self.viewAngle, self.viewRays) # get RGBD information
 
     ### update RL stuff here ###
+    ''' ignore this hacky genetic alg + backprop monster '''
     R = -2 * self.bumpSensor + abs(self.lvel + self.rvel)
     Sp = (np.array(self.visRGB) * (1 - np.array([self.visD]).T / Game._DIAG)).flatten() / 255
     phi = np.hstack((Sp, 1))
