@@ -10,7 +10,7 @@ from random import random, randint
 class Game:
   # settings
   _WINDOW_CAPTION = "Game"
-  _FPS = 1000
+  _FPS = 30
   _FPS_DISPLAY = False
   _WIDTH = 320
   _HEIGHT = 320
