@@ -1,5 +1,5 @@
 # Roombas
-Roomba simulator built around meepgame
+Roomba simulator built around [meepgame](https://github.com/MeepMoop/meepgame)
 
 # Dependencies
 * Pygame
