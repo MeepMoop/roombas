@@ -5,7 +5,7 @@ Roomba simulator built around meepgame
 * Pygame
 
 # Usage
-'''
+```
 git clone http://github.com/MeepMoop/roombas
 python3 Game.py
-'''
+```
