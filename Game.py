@@ -95,11 +95,11 @@ class Game:
         entities.append(entity)
     return entities
 
-### new rooms - inherit from base class
+### new rooms - inherit from base class (See GameObjects.py)
 
 '''
 class NewRoom(Room):
-  def __init__(self):
+  def __init__(self): 
     super().__init__()
   def update(self):
     super().update()
@@ -133,7 +133,7 @@ class Environment(Room):
     Game.instanceCreate(Roomba(160, 160, 16, 12, [32, 32, 32], random() * 2 * pi, 0.0, 0.5))
 
 
-### new entities - inherit from base class
+### new entities - inherit from base class (See GameObjects.py)
 
 '''
 class NewEntity(Entity):
