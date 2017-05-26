@@ -10,8 +10,8 @@ from random import random, randint
 class Game:
   # settings
   _WINDOW_CAPTION = "Game"
-  _FPS = 1000
-  _FPS_DISPLAY = True
+  _FPS = 30
+  _FPS_DISPLAY = False
   _WIDTH = 320
   _HEIGHT = 320
   _BGCOL = (255, 255, 255)
@@ -116,10 +116,10 @@ class Environment(Room):
     super().roomStart()
     # build environment here - add obstacles, roombas, etc
     wallWidth = 32
-    wallColorTop = [0, 0, 0]
-    wallColorBottom = [0, 0, 0]
-    wallColorLeft = [0, 0, 0]
-    wallColorRight = [0, 0, 0]
+    wallColorTop = [128, 128, 128]
+    wallColorBottom = [128, 128, 128]
+    wallColorLeft = [128, 128, 128]
+    wallColorRight = [128, 128, 128]
     ballColor = [255, 128, 0]
 
     self.obstacles = []
@@ -153,7 +153,7 @@ class Roomba(Entity):
   sprFace = pygame.image.load('agent_face.png')
 
   ## events
-  
+
   def __init__(self, x, y, r, rW, color, ang=0, lvel=0, rvel=0):
     super().__init__(x, y)
     self.r = r # roomba radius
@@ -200,8 +200,8 @@ class Roomba(Entity):
     if R < 0.5:
       lvelTarget = 2 * randint(0, 1) - 1
       rvelTarget = 2 * randint(0, 1) - 1
-      self.wl += 0.11 * (lvelTarget - self.lvel) * (1 - self.lvel ** 2) * phi
-      self.wr += 0.11 * (rvelTarget - self.rvel) * (1 - self.rvel ** 2) * phi
+      self.wl += 0.1 * (lvelTarget - self.lvel) * (1 - self.lvel ** 2) * phi
+      self.wr += 0.1 * (rvelTarget - self.rvel) * (1 - self.rvel ** 2) * phi
   
   def draw(self):
     super().draw()
@@ -261,10 +261,10 @@ class Roomba(Entity):
   # draw vision rays relative to roomba
   def drawVisionRays(self, viewAngle, rays):
     if rays == 1:
-      rayPts = [(self.x + Game._DIAG + cos(self.ang), self.y - Game._DIAG + sin(self.ang))]
+      rayPts = [(self.x + self.viewRayDist + cos(self.ang), self.y - self.viewRayDist + sin(self.ang))]
     else:
-      rayPts = [(self.x + Game._DIAG * cos(self.ang + viewAngle * (0.5 - i / (rays - 1))), \
-                 self.y - Game._DIAG * sin(self.ang + viewAngle * (0.5 - i / (rays - 1)))) for i in range(rays)]
+      rayPts = [(self.x + self.viewRayDist * cos(self.ang + viewAngle * (0.5 - i / (rays - 1))), \
+                 self.y - self.viewRayDist * sin(self.ang + viewAngle * (0.5 - i / (rays - 1)))) for i in range(rays)]
     for ray in rayPts:
       pygame.draw.line(Game._GFX, [0, 0, 0], (self.x, self.y), ray)
   
